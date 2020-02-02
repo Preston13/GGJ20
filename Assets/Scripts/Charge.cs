@@ -8,6 +8,7 @@ public class Charge : MonoBehaviour
 {
     public Player player;
     public Slider chargeSlider;
+    public float timeLimit = 10f;
     
     // Start is called before the first frame update
     void Start()
@@ -20,7 +21,7 @@ public class Charge : MonoBehaviour
     {
         if (!player.isCharging)
         {
-            chargeSlider.value -= .001f;
+            chargeSlider.value -= timeLimit / 10000;
         }
         else
         {
