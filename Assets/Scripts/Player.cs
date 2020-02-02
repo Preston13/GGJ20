@@ -52,6 +52,7 @@ public class Player : MonoBehaviour
     {
         if (collision.gameObject.tag == "Plug")
         {
+            Debug.Log("hi");
             isNearPlug = true;
         }
     }
