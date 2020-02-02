@@ -38,7 +38,9 @@ public class Player : MonoBehaviour
 
             if(Vector3.Distance(this.transform.position, plugPos) >= 5f)
             {
-                
+                Vector3 dist = this.transform.position - plugPos;
+                dist *= 5 / Vector3.Distance(this.transform.position, plugPos);
+                this.transform.position = plugPos + dist;
             }
         }
 
