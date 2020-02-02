@@ -32,7 +32,7 @@ namespace UnityStandardAssets._2D
 
         private void FixedUpdate()
         {
-            m_Grounded = false;
+            m_Grounded = true;
 
             // The player is grounded if a circlecast to the groundcheck position hits anything designated as ground
             // This can be done using layers instead but Sample Assets will not overwrite your project settings.
@@ -49,7 +49,7 @@ namespace UnityStandardAssets._2D
         }
 
 
-        public void Move(float move, bool crouch, bool jump)
+        public void Move(float move, bool crouch=false, bool jump=false)
         {
             // If crouching, check to see if the character can stand up
             if (!crouch && m_Anim.GetBool("Crouch"))
