@@ -8,7 +8,6 @@ public class Player : MonoBehaviour
     private Vector3 plugPos;
 
     public bool isCharging = false;
-    public bool canMoveRight = true;
     public Charge charging;
 
     // Start is called before the first frame update
@@ -31,7 +30,7 @@ public class Player : MonoBehaviour
 
         if(isCharging)
         {
-            if (Input.GetKeyDown(KeyCode.X))
+            if (isNearPlug && Input.GetKeyDown(KeyCode.X))
             {
                 isCharging = false;
             }
@@ -48,11 +47,15 @@ public class Player : MonoBehaviour
 
     }
 
+    public void StopCharging()
+    {
+        isCharging = false;
+    }
+
     private void OnTriggerEnter2D(Collider2D collision)
     {
         if (collision.gameObject.tag == "Plug")
         {
-            Debug.Log("hi");
             isNearPlug = true;
         }
     }

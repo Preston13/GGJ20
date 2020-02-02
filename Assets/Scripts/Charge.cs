@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.SceneManagement;
 
 
 public class Charge : MonoBehaviour
@@ -26,6 +27,11 @@ public class Charge : MonoBehaviour
         else
         {
             chargeSlider.value += .005f;
+        }
+
+        if (chargeSlider.value == 0)
+        {
+            SceneManager.LoadScene(1);
         }
     }
 }
