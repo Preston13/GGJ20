@@ -5,28 +5,53 @@ using UnityEngine.UI;
 
 public class PlugEnergy : MonoBehaviour
 {
-    public Slider energy;
+    private Slider energy;
     public Player player;
     public Charge charge;
-    public Light chargeLight;
+    private Light chargeLight;
+    private bool isNearPlayer;
 
     // Start is called before the first frame update
     void Start()
     {
+        energy = GetComponentInChildren<Slider>();
         chargeLight = GetComponent<Light>();
     }
 
     // Update is called once per frame
     void Update()
     {
-        if (player.isCharging)
+        if (player.isCharging && isNearPlayer)
         {
             chargeLight.enabled = true;
             energy.value -= .0005f;
+
         }
         else
         {
-            chargeLight.enabled = false;
+            this.chargeLight.enabled = false;
+        }
+
+        if(energy.value == 0)
+        {
+            player.StopCharging();
+            Destroy(this.gameObject);
+        }
+    }
+
+    private void OnTriggerEnter2D(Collider2D collision)
+    {
+        if (collision.gameObject.tag == "Player")
+        {
+            isNearPlayer = true;
+        }
+    }
+
+    private void OnTriggerExit2D(Collider2D collision)
+    {
+        if (collision.gameObject.tag == "Player" && !player.isCharging)
+        {
+            isNearPlayer = false;
         }
     }
 }
